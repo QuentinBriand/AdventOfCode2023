@@ -1,64 +1,62 @@
 <?php
 
-function openFile($filename) {
-
+function openFile($filename)
+{
     $file = fopen($filename, "r");
-    if (!$file) {
+
+    if (!$file)
         return "";
-    }
+
     $fileContent = fread($file, filesize($filename));
     fclose($file);
+
     return $fileContent;
 }
 
-function callFunction($functionName, $input) {
-    if (function_exists($functionName))
-        return $functionName($input);
-    else
-        return "Function not found";
-}
-
-function getFirstNumber($input, $wordsToFind) {
+function getFirstNumber($input, $wordsToFind)
+{
     for ($i = 0; $i < strlen($input); $i++) {
-        if (ctype_digit($input[$i])) {
+        if (ctype_digit($input[$i]))
             return $input[$i];
-        }
-        foreach ($wordsToFind as $index => $word) {
-            if (substr($input, $i, strlen($word)) == $word) {
+
+        foreach ($wordsToFind as $index => $word)
+            if (substr($input, $i, strlen($word)) == $word)
                 return $index + 1;
-            }
-        }
     }
+
     return -1;
 }
 
-function getLastNumber($input, $wordsToFind) {
+function getLastNumber($input, $wordsToFind)
+{
     for ($i = strlen($input) - 1; $i >= 0; $i--) {
         if (ctype_digit($input[$i]))
             return $input[$i];
-        foreach ($wordsToFind as $index => $word) {
+
+        foreach ($wordsToFind as $index => $word)
             if (substr($input, $i - strlen($word), strlen($word)) == $word)
                 return $index + 1;
-        }
     }
+
     return -1;
 }
 
-function parseArray($input) {
+function parseArray($input)
+{
     $data = explode("\n", $input);
     $res = 0;
     $wordsToFind = array("one", "two", "three", "four", "five", "six", "seven", "eight", "nine");
+
     for ($i = 0; $i < count($data); $i++) {
         if ($data[$i] != "") {
             $first = getFirstNumber($data[$i], $wordsToFind);
             $second = getLastNumber($data[$i], $wordsToFind);
 
-            if ($first != -1 && $second != -1) {
-                echo $first . $second . "\n";
+            if ($first != -1 && $second != -1)
                 $res += intval($first . $second);
-            }
         }
     }
+
     return $res;
 }
 
