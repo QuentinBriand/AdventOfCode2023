@@ -37,26 +37,26 @@ Advent of Code is an Advent calendar of small programming puzzles for a variety 
 ### <img src="https://s3.dualstack.us-east-2.amazonaws.com/pythondotorg-assets/media/community/logos/python-logo-only.png" width='4%' style="vertical-align:middle"> <a name="about-python">Python</a>
 
 ```bash
-python3 dayXX.py
+python3 DayXX/Python/main.py
 ```
 
 ### <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/C_Programming_Language.svg/800px-C_Programming_Language.svg.png" width='4%' style="vertical-align:middle"> <a name="about-c">C</a>
 
 ```bash
-gcc dayXX.c -o dayXX
+gcc DayXX/C/main.c -o dayXX
 ./dayXX
 ```
 
 ### <img src="./resources/ts-logo-128.png" width='4%' style="vertical-align:middle"> <a name="about-ts">Typescript</a>
 
 ```bash
-tsc dayXX.ts
+tsc DayXX/TS/main.ts
 node dayXX.js
 ```
 
 ### <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/ISO_C%2B%2B_Logo.svg/800px-ISO_C%2B%2B_Logo.svg.png" width='4%' style="vertical-align:middle"> <a name="about-cpp">C++</a>
 
 ```bash
-g++ dayXX.cpp -o dayXX
+g++ DayXX/CPP/main.cpp -o dayXX
 ./dayXX
 ```
