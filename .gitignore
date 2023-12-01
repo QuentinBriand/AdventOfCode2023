@@ -1,1 +1,4 @@
 resources/Day*/second*
+**/node_modules/
+**/package-lock.json
+**/*.js
