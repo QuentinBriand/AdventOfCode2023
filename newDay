@@ -1,0 +1,24 @@
+#!/usr/bin/env python3
+
+import os
+
+newDayNumber = input("Enter the day number: ")
+try:
+    newDayNumberConverted = int(newDayNumber)
+except:
+    print("Invalid input")
+    exit(84)
+
+newDayNumber = "0" + newDayNumber if len(newDayNumber) == 1 else newDayNumber
+
+if os.path.exists("Day" + str(newDayNumber)):
+    print("Day already exists")
+    exit(84)
+
+os.mkdir("Day" + str(newDayNumber))
+os.chdir("Day" + str(newDayNumber))
+
+languages = ["C", "CPP", "Python", "TS"]
+
+for language in languages:
+    os.mkdir(language)
