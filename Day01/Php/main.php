@@ -3,42 +3,32 @@
 function openFile($filename)
 {
     $file = fopen($filename, "r");
-
     if (!$file)
         return "";
-
     $fileContent = fread($file, filesize($filename));
     fclose($file);
-
     return $fileContent;
 }
 
-function getFirstNumber($input, $wordsToFind)
+function getNumbers($input, $wordsToFind)
 {
-    for ($i = 0; $i < strlen($input); $i++) {
+    $res = array(-1, -1);
+    for ($i = 0, $j = strlen($input) - 1; $i < strlen($input); $i++, $j--) {
         if (ctype_digit($input[$i]))
-            return $input[$i];
+            $res[0] = $input[$i];
+        if (ctype_digit($input[$j]))
+            $res[1] = $input[$j];
 
-        foreach ($wordsToFind as $index => $word)
+        foreach ($wordsToFind as $index => $word) {
             if (substr($input, $i, strlen($word)) == $word)
-                return $index + 1;
+                $res[0] = $index + 1;
+            if (substr($input, $j - strlen($word) + 1, strlen($word)) == $word)
+                $res[1] = $index + 1;
+        }
     }
-
-    return -1;
-}
-
-function getLastNumber($input, $wordsToFind)
-{
-    for ($i = strlen($input) - 1; $i >= 0; $i--) {
-        if (ctype_digit($input[$i]))
-            return $input[$i];
-
-        foreach ($wordsToFind as $index => $word)
-            if (substr($input, $i - strlen($word), strlen($word)) == $word)
-                return $index + 1;
-    }
-
-    return -1;
+    if ($res[0] == -1 || $res[1] == -1)
+        return "";
+    return $res[1] . $res[0];
 }
 
 function parseArray($input)
@@ -46,27 +36,19 @@ function parseArray($input)
     $data = explode("\n", $input);
     $res = 0;
     $wordsToFind = array("one", "two", "three", "four", "five", "six", "seven", "eight", "nine");
-
     for ($i = 0; $i < count($data); $i++) {
-        if ($data[$i] != "") {
-            $first = getFirstNumber($data[$i], $wordsToFind);
-            $second = getLastNumber($data[$i], $wordsToFind);
-
-            if ($first != -1 && $second != -1)
-                $res += intval($first . $second);
-        }
+        if ($data[$i] == "" || ($nb = getNumbers($data[$i], $wordsToFind)) == "")
+            continue;
+        $res += intval($nb);
     }
 
     return $res;
 }
 
 $input = openFile("data.txt");
-
 if ($input == "") {
     echo "Error: File not found\n";
     return -1;
 }
-
 echo parseArray($input) . "\n";
-
 return 0;
