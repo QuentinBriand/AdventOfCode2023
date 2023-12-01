@@ -33,34 +33,17 @@ static int is_digit_word(char *line)
     return 0;
 }
 
-static int first_digit_compare(char *line, int i, int *res)
+static int digit_compare(char *line, int i, int *res, int first)
 {
     int tmp = 0;
 
     if (IS_DIGIT(line[i])) {
-        *res += (line[i] - '0') * 10;
+        *res += first ? (line[i] - '0') * 10 : line[i] - '0';
         return 0;
     } else {
         tmp = is_digit_word(&line[i]);
         if (tmp) {
-            *res += tmp * 10;
-            return 0;
-        }
-    }
-    return 1;
-}
-
-static int last_digit_compare(char *line, int end, int *res)
-{
-    int tmp = 0;
-
-    if (IS_DIGIT(line[end])) {
-        *res += (line[end] - '0');
-        return 0;
-    } else {
-        tmp = is_digit_word(&line[end]);
-        if (tmp) {
-            *res += tmp;
+            *res += first ? tmp * 10 : tmp;
             return 0;
         }
     }
@@ -76,9 +59,9 @@ static int check_line(char *line)
 
     for (size_t i = 0; i < strlen(line); i++) {
         if (is_first)
-            is_first = first_digit_compare(line, i, &res);
+            is_first = digit_compare(line, i, &res, 1);
         if (is_last)
-            is_last = last_digit_compare(line, end, &res);
+            is_last = digit_compare(line, end, &res, 0);
         end--;
         if (!is_first && !is_last)
             break;
