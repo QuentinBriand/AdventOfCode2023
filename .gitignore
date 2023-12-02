@@ -2,3 +2,4 @@ resources/Day*/second*
 **/node_modules/
 **/package-lock.json
 **/*.js
+__pycache__
