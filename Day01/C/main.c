@@ -16,20 +16,10 @@ static int is_digit_word(char *line)
         "three", "four", "five", "six",
         "seven", "eight", "nine"
     };
-    size_t i = 0;
-    int j = 0;
 
-    while (i < strlen(line)) {
-        if (j == 9) {
-            j = 0;
-            i++;
-            continue;
-        }
-        if (strncmp(line, words[j], strlen(words[j])) == 0) {
-                return j + 1;
-            }
-        j++;
-    }
+    for (int j = 0; j < 9; j++)
+        if (strncmp(line, words[j], strlen(words[j])) == 0)
+            return j + 1;
     return 0;
 }
 
