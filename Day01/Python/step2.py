@@ -10,7 +10,7 @@ if __name__ == "__main__":
     with open(FIRST_FILENAME) as f:
         lines = [line.strip() for line in f.readlines()]
 
-    parsers = [intParser]
+    parsers = [intParser, charParser]
     calibrations = []
 
     for line in lines:
