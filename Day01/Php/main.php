@@ -47,7 +47,7 @@ function parseArray($input)
     return $res;
 }
 
-$input = openFile("data.txt");
+$input = openFile("../../resources/Day01/example");
 if ($input == "") {
     echo "Error: File not found\n";
     return -1;
