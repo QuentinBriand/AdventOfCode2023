@@ -18,7 +18,10 @@ if os.path.exists("Day" + str(newDayNumber)):
 os.mkdir("Day" + str(newDayNumber))
 os.chdir("Day" + str(newDayNumber))
 
-languages = ["C", "CPP", "Python", "TS"]
+languages = ["C", "CPP", "Python", "TS", "Php", "Go"]
 
 for language in languages:
     os.mkdir(language)
+
+os.chdir('../resources')
+os.mkdir("Day" + str(newDayNumber))
