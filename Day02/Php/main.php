@@ -10,17 +10,6 @@ function openFile($filename) : string
     return $fileContent;
 }
 
-function getId($gameLine)
-{
-    $data = explode(" ", $gameLine);
-    if (count($data) < 2)
-        return "";
-
-    $data = explode(":", $data[1]);
-    return intval($data[0]);
-}
-
-
 function parseSet($set, $picked): array
 {
     $data = explode(",", $set);
